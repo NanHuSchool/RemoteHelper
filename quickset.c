@@ -24,9 +24,13 @@ int main(){
     system("reg add HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v ShowSecondsInSystemClock /t REG_DWORD /d 1 /f");
     // 显示所有文件扩展名
     system("reg add HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced /v HideFileExt /t REG_DWORD /d 0 /f");
+    // 关闭打开程序的“安全警告”
+    system("reg add HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations /v ModRiskFileTypes /t REG_SZ /d \".bat;.exe;.reg;.vbs;.chm;.msi;.js;.cmd\" /f");
     // 重启资源管理器
     system("taskkill /f /im explorer.exe");
     system("start explorer.exe");
+    // 刷新DNS服务
+    system("ipconfig /flushdns");
     // 重启系统
     // system("shutdown /r /t 0");
 }
