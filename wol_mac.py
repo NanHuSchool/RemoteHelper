@@ -40,7 +40,7 @@ def wake_mac(csv_path):
             send_magic_packet(mac_address_two)
 
 def main():
-    wake_mac(".\mac.cv")
+    wake_mac(".\mac.csv")
 
 if __name__ == '__main__':
     main()
