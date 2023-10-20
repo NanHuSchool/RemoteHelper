@@ -1,2 +1,4 @@
 wakeonlan
+click
 pyinstaller
+nuitka

@@ -58,6 +58,8 @@ ffmepg： {ffmepg_path}""")
     # 录屏时间 （秒）
     record_time = 600
     # 开始录制
+    # 只录制屏幕，不录制声音
+    # os.system(f"{ffmepg_path} -y -f gdigrab -framerate 60 -video_size 1920x1080 -i desktop -t {record_time} -c:v libx265 -preset ultrafast -b:v 10M \"{save_file}\"")
     os.system(f"{ffmepg_path} -y -f gdigrab -framerate 60 -video_size 1920x1080 -i desktop -f dshow -i audio=\"麦克风阵列 (Built-in Audio)\" -t {record_time} -c:v libx265 -preset ultrafast -b:v 10M -c:a aac -strict experimental \"{save_file}\"")
     
 if __name__ == '__main__':
