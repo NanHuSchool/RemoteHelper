@@ -3,17 +3,17 @@ import os
 import csv
 from wakeonlan import send_magic_packet
 
-def main(csv_name):
-    # csv数据文件位置
-    csv_path = os.path.join(os.path.dirname(__file__), csv_name)
-    # 检测文件
+def wake_mac(csv_path):
+    # 判断csv文件是否存在
     if os.path.exists(csv_path):
-        print(f"数据位置： {csv_path}")
+        csv_abspath = os.path.abspath(csv_path)
+        print(f"csv文件：{csv_abspath}")
     else:
-        print(f"找不到文件： {csv_name}")
-        exit(1)
-    # 打开CVS文件并读取
-    with open(csv_path, mode="r", encoding="utf-8") as f:
+        print(f"找不到csv文件： {csv_path}")
+        exit()
+
+    # 读取文件
+    with open(csv_abspath, mode="r", encoding="utf-8") as f:
         csv_reader = csv.reader(f)
         # 跳过标题行
         next(csv_reader)
@@ -34,5 +34,8 @@ def main(csv_name):
             send_magic_packet(mac_address_one)
             send_magic_packet(mac_address_two)
 
-if __name__ == "__main__":
-    main("mac.csv")
+def main():
+    wake_mac("mac.csv")
+
+if __name__ == '__main__':
+    main()
