@@ -4,6 +4,11 @@
 int main(){
     // 显示控制面板
     system("reg add HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\HideDesktopIcons\\NewStartPanel /v {5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0} /t REG_DWORD /d 0 /f");
+    // 显示此电脑
+    system("reg add HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\HideDesktopIcons\\NewStartPanel /v {20D04FE0-3AEA-1069-A2D8-08002B30309D} /t REG_DWORD /d 0 /f");
+    // 关闭系统睡眠
+    system("powercfg -change -standby-timeout-ac 0");
+    system("powercfg -change -standby-timeout-dc 1");
     // 关闭防火墙
     system("netsh advfirewall set allprofiles state off");
     system("reg add HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile /v EnableFirewall /t REG_DWORD /d 0 /f");
